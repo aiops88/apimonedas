@@ -1,0 +1,7 @@
+monedas\api\aplicacion\servicios\PaisServicio.class
+monedas\api\aplicacion\seguridad\SeguridadServicio.class
+monedas\api\aplicacion\seguridad\UsuarioDetalleServicio.class
+monedas\api\aplicacion\servicios\MonedaServicio.class
+monedas\api\aplicacion\seguridad\FiltroSeguridad.class
+monedas\api\aplicacion\seguridad\UsuarioDetalles.class
+monedas\api\aplicacion\servicios\UsuarioServicio.class

@@ -1,0 +1,7 @@
+monedas\api\dominio\entidades\CambioMoneda.class
+monedas\api\dominio\entidades\Moneda.class
+monedas\api\dominio\entidades\Pais.class
+monedas\api\dominio\DTOs\UsuarioLoginDto.class
+monedas\api\dominio\DTOs\CapitalDto.class
+monedas\api\dominio\entidades\Usuario.class
+monedas\api\dominio\DTOs\PeriodoDto.class

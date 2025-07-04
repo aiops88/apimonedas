@@ -1,0 +1,3 @@
+monedas\api\core\servicios\IUsuarioServicio.class
+monedas\api\core\servicios\IMonedaServicio.class
+monedas\api\core\servicios\IPaisServicio.class

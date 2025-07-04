@@ -1,0 +1,4 @@
+monedas\api\infraestructura\repositorios\IPaisRepositorio.class
+monedas\api\infraestructura\repositorios\IMonedaRepositorio.class
+monedas\api\infraestructura\repositorios\ICambioMonedaRepositorio.class
+monedas\api\infraestructura\repositorios\IUsuarioRepositorio.class
