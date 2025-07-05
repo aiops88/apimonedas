@@ -1,31 +1,20 @@
-pipeline{
+pipeline {
     agent any
 
-    environment{
+    environment {
         DOCKER_IMAGE = 'apimonedastt'
         CONTAINER_NAME = 'dockerapimonedastt'
-        DOCKER_NETWORK =  'dockermonedas_red'
-//        DOCKER_BUILD_DIR = 'presentacion'
+        DOCKER_NETWORK = 'dockermonedas_red'
         HOST_PORT = '9080'
         CONTAINER_PORT = '8080'
     }
 
-    stages{
-        /*
-        stage('Compilación Maven'){
-            steps{
-                bat 'mvn clean package -Dskiptests'
+    stages {
+        stage('Construir imagen') {
+            steps {
+                bat "docker build . -t ${DOCKER_IMAGE}"
             }
         }
-        */
-        stage('Construir imagen'){
-            steps{
-                //dir("${DOCKER_BUILD_DIR}"){
-                    bat "docker build . -t ${DOCKER_IMAGE}"
-                //}
-            }
-        }
-
         stage('Detener contenedor existente') {
             steps {
                 // Detener el contenedor si existe, pero siempre retornar éxito
@@ -39,3 +28,10 @@ pipeline{
                 '''
             }
         }
+        stage('Desplegar contenedor') {
+            steps {
+                bat "docker run --network ${DOCKER_NETWORK} --name ${CONTAINER_NAME} -p ${HOST_PORT}:${CONTAINER_PORT} -d ${DOCKER_IMAGE}"
+            }
+        }
+    }
+}
