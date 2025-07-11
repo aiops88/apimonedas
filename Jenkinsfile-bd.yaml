@@ -1,0 +1,28 @@
+pipeline {
+    agent any
+
+    enviroment {
+        KUBECONFIG = credentials('300')
+    }
+
+    stages {
+        stage('Limpiar datos previos') {
+            steps {
+                script {
+                    bat """
+                    kubectl delete stateful bdmonedas-sfs --ignore-not-found
+                    """
+                }
+            }
+        }
+        stage('Aplicar Manifiestos Infraestructura') {
+            steps {
+                script {
+                    bat """
+                    kubectl apply -f manifiestos\\infraestructura\\
+                    """
+                }
+            }
+        }
+    }
+}

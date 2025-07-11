@@ -1,9 +1,9 @@
-apiVersion: v1
-kind: Statefulset
+apiVersion: apps/v1
+kind: StatefulSet
 metadata: 
   name: bdmonedas-sfs
 spec:
-  serviceName: "servicio-bdmonedas"
+  serviceName: "bdmonedas-servicio"
   replicas: 1
   selector:
     matchLabels:
@@ -15,27 +15,27 @@ spec:
     spec:
       containers:
         - name: bdmonedas
-        - image: postgres:16
-        - ports: 
-          -containerPort: 5432
-        - env:
-          - name: POSTGRES_BD
-            value: monedas
-          - name: POSTGRES_USUARIO
-            value: postgres
-          - name: POSTGRES_PASSWORD
-            valueFrom:
-              secretKeyRef:
-                name: bdmonedas-secretos
-                key: BDMONEDAS_PASSWORD
-          - volumeMounts:
+          image: postgres:16
+          ports: 
+            - containerPort: 5432
+          env:
+            - name: POSTGRES_DB
+              value: monedas
+            - name: POSTGRES_USER
+              value: postgres
+            - name: POSTGRES_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: bdmonedas-secretos
+                  key: BDMONEDAS_PASSWORD
+          volumeMounts:
             - name: storage-bdmonedas
-              mountPath:/var/lib/postgresql/data
+              mountPath: /var/lib/postgresql/data
   volumeClaimTemplates:
     - metadata:
         name: storage-bdmonedas
       spec:
         accessModes: ["ReadWriteOnce"]
         resources:
-          request:
+          requests:
             storage: 1Gi

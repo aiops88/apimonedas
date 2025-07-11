@@ -4,11 +4,9 @@ metadata:
   name: bdmonedas-pv
 spec:
   capacity:
-    storage: 16i
+    storage: 16Gi
   accessModes:
     - ReadWriteOnce
   hostPath:
     path: "/data/postgres"
-  persistentVolumeClaimPolicy: Delete
-
-  
+  persistentVolumeReclaimPolicy: Delete
