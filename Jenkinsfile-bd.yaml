@@ -11,6 +11,7 @@ pipeline {
                 script {
                     bat """
                     kubectl delete stateful bdmonedas-sfs --ignore-not-found
+                    kubectl delete pvc storage-bdmonedas-bdmonedas-sfs-tt-0 --ignore-not-found
                     """
                 }
             }
@@ -34,13 +35,13 @@ pipeline {
             }
         }
         post {
-        success {
-            echo 'Infraestructura desplegada correctamente!'
+            success {
+                echo 'Infraestructura desplegada correctamente!'
+            }
+            failure {
+                echo 'Error desplegando la infraestructura.'
+            }
         }
-        failure {
-            echo 'Error desplegando la infraestructura.'
-        }
-    }
 
     }
 }
