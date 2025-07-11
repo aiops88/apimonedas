@@ -24,5 +24,23 @@ pipeline {
                 }
             }
         }
+        stage('Esperar POD lista') {
+            steps {
+                script {
+                    bat """
+                    kubectl rollout status statefulset/bdmonedas-sfs-tt
+                    """
+                }
+            }
+        }
+        post {
+        success {
+            echo 'Infraestructura desplegada correctamente!'
+        }
+        failure {
+            echo 'Error desplegando la infraestructura.'
+        }
+    }
+
     }
 }
