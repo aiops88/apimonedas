@@ -21,6 +21,7 @@ pipeline {
                 script {
                     bat """
                     kubectl apply -f manifiestos\\infraestructura\\
+                    kubectl apply -f manifiestos/infraestructura/bdmonedas-servicio.yaml
                     """
                 }
             }
